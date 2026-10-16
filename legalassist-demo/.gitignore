@@ -1,0 +1,9 @@
+# Runtime and generated data
+app/data/models/
+app/data/index_cache/
+app/data/sessions/
+app/data/corpus_cache/
+app/data/law_kb.json
+app/engine/__pycache__/
+__pycache__/
+*.pyc
