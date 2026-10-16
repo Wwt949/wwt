@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 产品经理简历</title>
+  <style>
+    :root {
+      --ink: #131a26;
+      --muted: #5f6978;
+      --line: #e1e6ed;
+      --blue: #214f9d;
+      --cyan: #36bdcf;
+      --wash: #f4f7fb;
+      --paper: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--wash); color: var(--ink); font-family: Inter, "Microsoft YaHei", "PingFang SC", Arial, sans-serif; }
+    .toolbar { position: sticky; top: 0; z-index: 3; display: flex; justify-content: flex-end; gap: 10px; padding: 14px 22px; background: rgba(244,247,251,.92); backdrop-filter: blur(8px); }
+    .toolbar button { border: 1px solid var(--line); border-radius: 8px; padding: 9px 14px; background: #fff; color: var(--ink); cursor: pointer; font: inherit; font-size: 13px; }
+    .toolbar button.primary { background: var(--blue); color: white; border-color: var(--blue); }
+    .resume { position: relative; width: min(1120px, calc(100% - 32px)); margin: 18px auto 64px; padding: 58px 66px 46px; background: var(--paper); border-radius: 18px; box-shadow: 0 16px 42px rgba(18, 38, 68, .12); overflow: hidden; }
+    .resume::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 8px; background: var(--blue); }
+    header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 32px; border-bottom: 1px solid var(--line); }
+    .name { margin: 0 0 9px; font-size: clamp(30px, 5vw, 42px); font-weight: 800; letter-spacing: -.045em; }
+    .role { margin: 0 0 14px; color: var(--blue); font-size: 14px; font-weight: 750; letter-spacing: .08em; }
+    .contact { color: var(--muted); font-size: 14px; line-height: 1.7; }
+    .photo { position: relative; display: grid; place-items: center; width: 98px; height: 98px; flex: 0 0 auto; border: 2px solid var(--cyan); border-radius: 50%; background: #edf8fb; color: var(--blue); cursor: pointer; overflow: hidden; font-size: 12px; font-weight: 700; }
+    .photo img { width: 100%; height: 100%; object-fit: cover; }
+    .photo input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+    section { padding-top: 29px; }
+    .section-title { display: grid; grid-template-columns: 32px auto 1fr; align-items: center; gap: 9px; margin-bottom: 19px; }
+    .section-index { color: var(--cyan); font-size: 12px; font-weight: 800; letter-spacing: .1em; }
+    .section-title h2 { margin: 0; font-size: 21px; letter-spacing: -.02em; }
+    .section-title::after { content: ""; height: 1px; background: var(--line); margin-left: 8px; }
+    .entry + .entry { margin-top: 24px; }
+    .entry-head { display: flex; justify-content: space-between; gap: 18px; align-items: baseline; margin-bottom: 7px; font-size: 15px; font-weight: 750; }
+    .entry-head .right { color: var(--blue); text-align: right; }
+    .entry-sub { margin-bottom: 11px; color: var(--muted); font-size: 14px; }
+    ul { margin: 0; padding: 0; list-style: none; }
+    li { position: relative; padding-left: 21px; margin: 9px 0; color: #252d39; font-size: 14px; line-height: 1.75; }
+    li::before { content: ""; position: absolute; left: 1px; top: .71em; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); }
+    strong { color: var(--ink); }
+    .skill-grid { display: grid; grid-template-columns: 130px 1fr; gap: 9px 20px; font-size: 14px; line-height: 1.7; }
+    .skill-grid dt { font-weight: 750; color: var(--ink); }
+    .skill-grid dd { margin: 0; color: #2a3340; }
+    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 15px; }
+    .metric { padding: 14px 15px; border: 1px solid #dcebf2; border-radius: 10px; background: #f7fbfd; }
+    .metric b { display: block; color: var(--blue); font-size: 20px; line-height: 1.1; }
+    .metric span { display: block; margin-top: 5px; color: var(--muted); font-size: 12px; }
+    .advantage { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .advantage article { padding: 16px 17px; border: 1px solid var(--line); border-radius: 10px; }
+    .advantage h3 { margin: 0 0 7px; font-size: 15px; }
+    .advantage p { margin: 0; color: #394250; font-size: 13px; line-height: 1.7; }
+    footer { margin-top: 34px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; letter-spacing: .04em; }
+    body.compact .resume { padding-top: 44px; padding-bottom: 36px; }
+    body.compact section { padding-top: 20px; }
+    body.compact li { margin: 6px 0; line-height: 1.58; }
+    body.compact .metrics { margin-top: 9px; }
+    [contenteditable="true"] { border-radius: 3px; outline: none; }
+    [contenteditable="true"]:focus { background: #eef9fc; box-shadow: 0 0 0 2px #c7eef4; }
+    @media (max-width: 680px) { .resume { width: 100%; margin: 0; border-radius: 0; padding: 38px 26px; } .toolbar { padding: 10px; } header { align-items: flex-start; gap: 18px; } .photo { width: 72px; height: 72px; } .entry-head { flex-direction: column; gap: 4px; } .entry-head .right { text-align: left; } .skill-grid { grid-template-columns: 1fr; gap: 2px; } .metrics, .advantage { grid-template-columns: 1fr; } }
+    @media print { @page { size: A4; margin: 9mm; } body { background: #fff; } .toolbar { display: none; } .resume { width: 100%; margin: 0; padding: 13mm 14mm 11mm; box-shadow: none; border-radius: 0; } header { padding-bottom: 19px; } section { padding-top: 18px; } .section-title { margin-bottom: 12px; } li { margin: 5px 0; line-height: 1.55; } .metrics { margin-top: 10px; } .advantage article { padding: 10px 12px; } footer { margin-top: 18px; } }
+  </style>
+</head>
+<body>
+  <nav class="toolbar">
+    <button onclick="document.body.classList.toggle('compact')">紧凑阅读</button>
+    <button class="primary" onclick="window.print()">打印 / 导出 PDF</button>
+  </nav>
+  <main class="resume" id="resume">
+    <header>
+      <div>
+        <h1 class="name" contenteditable="true">[姓名]</h1>
+        <p class="role" contenteditable="true">AI PRODUCT MANAGER INTERN / MaaS · AGENT</p>
+        <div class="contact" contenteditable="true">[手机]　·　[邮箱]　·　[求职城市]　·　[作品集 / Demo 链接]</div>
+      </div>
+      <label class="photo" title="点击上传证件照"><span>PHOTO</span><input id="photoInput" type="file" accept="image/*" /></label>
+    </header>
+
+    <section>
+      <div class="section-title"><span class="section-index">01</span><h2>实习经历</h2></div>
+      <article class="entry">
+        <div class="entry-head"><span contenteditable="true">[实习时间] · 产品推广与页面设计</span><span class="right" contenteditable="true">山东浪曦技术有限公司</span></div>
+        <div class="entry-sub" contenteditable="true">保险类 AI 智能体「艾小宝」</div>
+        <ul>
+          <li contenteditable="true"><strong>产品推广：</strong>参与线下活动推广与用户沟通，围绕保险咨询场景讲解产品功能；记录用户对使用门槛、结果可信度与下一步行动的关注点，辅助优化产品表达。</li>
+          <li contenteditable="true"><strong>页面设计：</strong>参与页面信息梳理与设计，围绕用户理解路径组织功能与文案，降低保险类 AI 产品的使用门槛；将线下反馈沉淀为“结构化结果 + 明确下一步”的设计原则。</li>
+        </ul>
+      </article>
+    </section>
+
+    <section>
+      <div class="section-title"><span class="section-index">02</span><h2>项目经历</h2></div>
+      <article class="entry">
+        <div class="entry-head"><span contenteditable="true">[项目时间] · 独立设计与 Demo 落地</span><span class="right" contenteditable="true">智能律询通 · 法律垂类 AI Agent</span></div>
+        <ul>
+          <li contenteditable="true"><strong>产品介绍与价值定位：</strong>智能律询通是面向普通用户与律师的双边法律服务 Agent。C 端帮助用户把零散描述梳理为“法律依据、证据准备、维权路径、风险提示”；B 端将对话进一步转化为可筛选的意向线索、客户摘要和跟进建议，降低律师接待与筛选成本。</li>
+          <li contenteditable="true"><strong>AI 产品工作流设计：</strong>从产品经理视角完成“场景拆解 → 能力定义 → 交互承接 → 效果验证”闭环：先将用户的模糊提问拆为纠纷类型、关键事实、证据与诉求；再设计意图识别、RAG 法条检索、案例匹配和风险评估的能力链路；最后以结构化结果卡和律师端线索报告承接输出，确保模型结果可理解、可行动、可跟进。</li>
+          <li contenteditable="true"><strong>质量机制与迭代：</strong>围绕“回答是否有依据、路径是否可执行、线索是否值得跟进”设计验证思路；完成移动端咨询 Demo 与律师工作台，支持线索筛选、客户报告和跟进记录。构建 1,037 条条级法律知识库，以检索指标、冒烟测试和接口验证推动效果迭代。</li>
+        </ul>
+        <div class="metrics" aria-label="项目验证指标">
+          <div class="metric"><b contenteditable="true">1,037</b><span>条级法律知识条目</span></div>
+          <div class="metric"><b contenteditable="true">56.8%</b><span>44 题集 Hit@1</span></div>
+          <div class="metric"><b contenteditable="true">110s → 19s</b><span>索引构建优化</span></div>
+        </div>
+      </article>
+    </section>
+
+    <section>
+      <div class="section-title"><span class="section-index">03</span><h2>相关技能</h2></div>
+      <dl class="skill-grid">
+        <dt>AI 产品</dt><dd contenteditable="true">LLM 应用、Prompt 设计、RAG 知识库、Function Calling / Tool Use、Agent 工作流、多轮对话、模型路由</dd>
+        <dt>产品方法</dt><dd contenteditable="true">用户调研与需求拆解、场景分析、用户流程与信息架构、MVP 验证、PRD / 流程图 / 原型表达</dd>
+        <dt>工具与技术</dt><dd contenteditable="true">Figma / 墨刀、ChatGPT / 豆包 / Kimi、Python 基础、HTTP API / JSON、GitHub / VS Code</dd>
+      </dl>
+    </section>
+
+    <section>
+      <div class="section-title"><span class="section-index">04</span><h2>个人优势</h2></div>
+      <div class="advantage">
+        <article contenteditable="true"><h3>业务到产品</h3><p>能从保险、法律等垂直场景出发，完成痛点识别、流程设计、Demo 验证与迭代复盘，把 AI 能力转化为用户可理解、可行动的产品体验。</p></article>
+        <article contenteditable="true"><h3>执行与学习</h3><p>具备真实用户沟通与动手验证意识，能阅读接口文档、参与 Demo 搭建和质量评测；持续关注 MaaS、RAG、Agent 等方向。</p></article>
+      </div>
+    </section>
+    <footer>AI PRODUCT MANAGER PORTFOLIO · 点击任意文本即可编辑 · 建议使用浏览器“打印 / 导出 PDF”投递</footer>
+  </main>
+  <script>
+    const photoInput = document.getElementById('photoInput');
+    photoInput.addEventListener('change', event => {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        const label = photoInput.parentElement;
+        label.querySelector('span')?.remove();
+        let image = label.querySelector('img');
+        if (!image) { image = document.createElement('img'); label.insertBefore(image, photoInput); }
+        image.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  </script>
+</body>
+</html>
+
